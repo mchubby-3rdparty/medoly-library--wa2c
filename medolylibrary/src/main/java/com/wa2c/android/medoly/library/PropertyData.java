@@ -220,6 +220,8 @@ public class PropertyData extends HashMap<String, List<String>> {
             return "";
         if (list.size() == 1)
             return list.get(0);
+        if (separator == null)
+            separator = "";
 
         StringBuilder builder = new StringBuilder();
         for (String text : list) {
@@ -267,15 +269,6 @@ public class PropertyData extends HashMap<String, List<String>> {
     public boolean isEmpty(String key) {
         List<String> list = this.get(key);
         return (list == null || list.size() == 0);
-
-//        boolean isEmpty = true;
-//        for (String value : list) {
-//            if (!TextUtils.isEmpty(value)) {
-//                isEmpty = false;
-//                break;
-//            }
-//        }
-//        return isEmpty;
     }
 
 
@@ -283,25 +276,5 @@ public class PropertyData extends HashMap<String, List<String>> {
     public PropertyData clone() {
         return (PropertyData)super.clone();
     }
-
-
-
-    /**
-     * Intentからプロパティ情報を取得する。
-     * @param intent インテント。
-     * @return プロパティ情報。
-     */
-    public static PropertyData getFromIntent(Intent intent) {
-        PropertyData propertyData = null;
-        if (intent.hasExtra(MedolyEnvironment.PLUGIN_VALUE_KEY)) {
-            Serializable serializable = intent.getSerializableExtra(MedolyEnvironment.PLUGIN_VALUE_KEY);
-            if (serializable != null) {
-                propertyData = new PropertyData((Map<String, List<String>>) serializable);
-            }
-        }
-        return propertyData;
-    }
-
-
 
 }
