@@ -3,15 +3,14 @@ package com.wa2c.android.medoly.library;
 
 import android.content.Context;
 
+/**
+ * Property interface.
+ */
 public interface IProperty {
-    /** プロパティの名称IDを取得。 */
+    /** Get property name id. */
     int getNameId();
-    /** プロパティの名称を取得。 */
+    /** Get property name. */
     String getName(Context context);
-    /** プロパティのキー名を取得。 */
+    /** Get property key name. */
     String getKeyName();
-
-    /** 省略可否。 */
-    boolean enableShortening();
-
 }

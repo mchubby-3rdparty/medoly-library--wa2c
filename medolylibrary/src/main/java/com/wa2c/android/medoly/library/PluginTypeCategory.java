@@ -1,36 +1,37 @@
 package com.wa2c.android.medoly.library;
 
-/** プラグイン種別カテゴリ */
+/**
+ * Plugin type category.
+ */
 public enum PluginTypeCategory {
-    /** 実行(汎用)。 */
+    /** Run plugin. */
     TYPE_RUN,
 
-    /** メッセージ通知。 */
+    /** Post message plugin. */
     TYPE_POST_MESSAGE,
 
-    /** アルバムアート要求。 */
+    /** Get album art plugin. */
     TYPE_GET_ALBUM_ART,
-    /** アルバムアート返信。 */
+    /** Put album art plugin. */
     TYPE_PUT_ALBUM_ART,
 
-    /** 歌詞要求。 */
+    /** Get lyrics plugin. */
     TYPE_GET_LYRICS,
-    /** 歌詞返信。 */
+    /** Put lyrics plugin. */
     TYPE_PUT_LYRICS,
 
-    /** プロパティ要求。 */
+    /** Get property plugin */
     TYPE_GET_PROPERTY,
-    /** プロパティ返信。 */
+    /** Put property plugin. */
     TYPE_PUT_PROPERTY;
 
-    /** コンストラクタ。 */
+    /** Constructor. */
     PluginTypeCategory() {
         categoryValue = "com.wa2c.android.medoly.plugin.category." + this.name();
     }
-
-    /** カテゴリの値。 */
+    /** Category value. */
     private String categoryValue;
-    /** カテゴリの値を取得。 */
+    /** Get category value. */
     public String getCategoryValue() {
         return categoryValue;
     }

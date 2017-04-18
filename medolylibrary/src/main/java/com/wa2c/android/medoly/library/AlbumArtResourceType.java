@@ -1,21 +1,26 @@
 package com.wa2c.android.medoly.library;
 
-
 /**
- * アルバムアートのデータ種別。
+ * Album art resource type.
  */
 public enum AlbumArtResourceType {
-    /** 外部ファイル。 */
-    EXTERNAL(R.string.album_art_resource_external),
-    /** 内蔵。 */
+    /** Built-in image. */
     INTERNAL(R.string.album_art_resource_internal),
-    /** コンテンツプロバイダ。 */
+    /** External file lyrics. */
+    EXTERNAL(R.string.album_art_resource_external),
+    /** External service image. */
+    SERVICE(R.string.album_art_resource_service),
+    /** Content provider image. */
     PROVIDER(R.string.album_art_resource_provider);
 
-    /** 初期化する。 */
-    AlbumArtResourceType(int id) { this.nameId = id; }
-    /** 名前のID。 */
+    /** Constructor. */
+    AlbumArtResourceType(int id) {
+        this.nameId = id;
+    }
+    /** Name id. */
     private int nameId;
-    /** 名前のIDを取得する。 */
-    public int getNameId() { return nameId; }
+    /** Get name id. */
+    public int getNameId() {
+        return nameId;
+    }
 }

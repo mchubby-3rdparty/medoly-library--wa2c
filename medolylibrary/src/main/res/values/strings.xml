@@ -116,6 +116,7 @@
     <!-- Album Art Resource Type -->
     <string name="album_art_resource_internal">Internal</string>
     <string name="album_art_resource_external">External File</string>
+    <string name="album_art_resource_service">External Service</string>
     <string name="album_art_resource_provider">Content Provider</string>
 
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * プロパティデータ。
@@ -38,12 +39,33 @@ public class PropertyData extends HashMap<String, List<String>> {
     }
 
 
+    @Override
+    public boolean containsKey(Object key) {
+        return super.containsKey(key);
+    }
+
     public boolean containsKey(IProperty key) {
         return super.containsKey(key.getKeyName());
     }
 
-    public boolean containsValue(IProperty key) {
-        return super.containsValue(key.getKeyName());
+    @Override
+    public boolean containsValue(Object value) {
+        try {
+            return containsValue((List<String>)value);
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    public boolean containsValue(List<String> value) {
+        if (value == null)
+            return false;
+
+        for (String key : this.keySet()) {
+            if (equals(key, value))
+                return true;
+        }
+        return false;
     }
 
     public List<String> remove(IProperty key) {
@@ -271,10 +293,51 @@ public class PropertyData extends HashMap<String, List<String>> {
         return (list == null || list.size() == 0);
     }
 
-
     @Override
     public PropertyData clone() {
         return (PropertyData)super.clone();
+    }
+
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || !(object instanceof Map))
+            return false;
+
+       try {
+            Map map = (Map)object;
+            for (String key : this.keySet()) {
+                List<String> val = (List<String>)map.get(key);
+                if (!this.equals(key, val))
+                    return false;
+            }
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean equals(IProperty property, List<String> list) {
+        return this.equals(property.getKeyName(), list);
+    }
+
+    public boolean equals(String property, List<String> list) {
+        List<String> thisList = this.get(property);
+        if (list == null || thisList == null || list.size() != thisList.size())
+            return false;
+
+        if (list.size() == 0 && thisList.size() == 0)
+            return false;
+
+        for (int i = 0; i < list.size(); i++) {
+            String a = list.get(i);
+            String b = thisList.get(i);
+            if (a == null || b == null)
+                return false;
+            if (!a.equals(b))
+                return false;
+        }
+        return true;
     }
 
 }

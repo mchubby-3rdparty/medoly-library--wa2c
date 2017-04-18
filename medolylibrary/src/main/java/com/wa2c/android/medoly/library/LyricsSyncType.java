@@ -1,18 +1,18 @@
 package com.wa2c.android.medoly.library;
 
 /**
- * 歌詞の同期種別。
+ * Lyrics sync type.
  */
 public enum LyricsSyncType {
-    /** 同期歌詞。 */
+    /** Synchronous lyrics. */
     SYNC(R.string.lyrics_sync_sync),
-    /** 非同期歌詞。 */
+    /** Asynchronous lyrics. */
     UNSYNC(R.string.lyrics_sync_unsync);
 
-    /** 初期化する。 */
+    /** Constructor. */
     LyricsSyncType(int id) { this.nameId = id; }
-    /** 名前のID。 */
+    /** Name id. */
     private int nameId;
-    /** 名前のIDを取得する。 */
+    /** Get name id. */
     public int getNameId() { return nameId; }
 }

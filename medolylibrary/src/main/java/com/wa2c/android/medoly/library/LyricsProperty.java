@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- * 歌詞のプロパティ情報。
+ * Lyrics properties.
  */
 public enum LyricsProperty implements IProperty {
     /** 歌詞。 */
@@ -94,28 +94,4 @@ public enum LyricsProperty implements IProperty {
         return keyPropertyMap.get(keyName);
     }
 
-
-
-    // Shortening
-
-    /** 省略可否を取得。 */
-    public boolean enableShortening() {
-        return getShorteningSet().contains(this);
-    }
-
-    /** 省略可のプロパティセットを取得。 */
-    public static HashSet<LyricsProperty> getShorteningSet() {
-        return shorteningSet;
-    }
-
-    /** 省略可のプロパティセット。 */
-    private static HashSet<LyricsProperty> shorteningSet = new HashSet<LyricsProperty>() {{
-        add( LYRICS             );
-        add( RESOURCE_TYPE      );
-        add( FORMAT_TYPE        );
-        add( SYNC_TYPE          );
-        add( FOLDER_PATH        );
-        add( FILE_NAME          );
-        add( LAST_MODIFIED      );
-    }};
 }

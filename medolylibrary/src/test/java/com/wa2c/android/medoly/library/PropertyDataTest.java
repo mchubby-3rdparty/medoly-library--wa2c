@@ -2,9 +2,10 @@ package com.wa2c.android.medoly.library;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -12,14 +13,13 @@ public class PropertyDataTest {
 
     PropertyData propertyData;
 
-
-
     @Before
     public void setUp() throws Exception {
-        propertyData = new PropertyData();
-        propertyData.put(MediaProperty.TITLE, "Title1");
-        propertyData.put(MediaProperty.ARTIST, "Artist1");
-
+        propertyData = new PropertyData() {{
+            put(MediaProperty.TITLE, "Title1");
+            put(MediaProperty.ARTIST, "Artist1");
+            put(MediaProperty.ALBUM, "Album1");
+        }};
     }
 
     @After
@@ -31,21 +31,41 @@ public class PropertyDataTest {
     public void containsKey() throws Exception {
         assertTrue(propertyData.containsKey(MediaProperty.TITLE));
         assertTrue(propertyData.containsKey(MediaProperty.TITLE.getKeyName()));
+        assertTrue(propertyData.containsKey(MediaProperty.ARTIST));
+        assertTrue(propertyData.containsKey(MediaProperty.ARTIST.getKeyName()));
+        assertTrue(propertyData.containsKey(MediaProperty.ALBUM));
+        assertTrue(propertyData.containsKey(MediaProperty.ALBUM.getKeyName()));
+
+        assertFalse(propertyData.containsKey(MediaProperty.DATA_URI));
     }
 
     @Test
     public void containsValue() throws Exception {
-        assertTrue(false);
+        assertFalse(propertyData.containsValue("Title1"));
+        assertTrue(propertyData.containsValue(new ArrayList<String>() {{ add("Title1"); }}));
+
+        propertyData.insertLast(MediaProperty.TITLE, "Title2");
+        assertTrue(propertyData.containsValue(new ArrayList<String>() {{ add("Title1"); add("Title2"); }}));
     }
 
     @Test
     public void remove() throws Exception {
+        List<String> list1 = propertyData.get(MediaProperty.TITLE);
+        List<String> list2 = propertyData.remove(MediaProperty.TITLE);
+        assertEquals(list1, list2);
+        assertFalse(propertyData.containsValue(list2));
 
+        List<String> list3 = propertyData.get(MediaProperty.ARTIST);
+        List<String> list4 = propertyData.remove(MediaProperty.ARTIST);
+        assertEquals(list3, list4);
+        assertFalse(propertyData.containsValue(list4));
     }
 
     @Test
     public void get() throws Exception {
-
+        List<String> val = propertyData.get(MediaProperty.TITLE);
+        assertNotNull(val);
+        assertTrue(val.equals(new ArrayList<String>() {{ add("Title1"); }}));
     }
 
     @Test
@@ -91,6 +111,11 @@ public class PropertyDataTest {
 
     @Test
     public void isEmpty() throws Exception {
+
+    }
+
+    @Test
+    public void equals() throws Exception {
 
     }
 

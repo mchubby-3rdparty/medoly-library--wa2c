@@ -3,60 +3,58 @@ package com.wa2c.android.medoly.library;
 import android.content.Context;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 /**
- * アルバムアートのプロパティ情報。
+ * Album art properties.
  */
 public enum AlbumArtProperty implements IProperty {
-    /** リソース種別。 */
+    /** Resource type. */
     RESOURCE_TYPE ( R.string.album_art_resource_type ),
-    /** 画像サイズ。 */
+    /** Image size. */
     IMAGE_SIZE    ( R.string.album_art_resolution    ),
 
-
-    /** 取得元名称。 */
+    /** Source name. */
     SOURCE_TITLE  ( R.string.source_title            ),
-    /** 取得元URI。 */
+    /** Source URI. */
     SOURCE_URI    ( R.string.source_uri              ),
-    /** MIMEタイプ。 */
+    /** MIME Type. */
     MIME_TYPE     ( R.string.mime_type               ),
-    /** フォルダパス。 */
+    /** Folder path. */
     FOLDER_PATH   ( R.string.folder_path             ),
-    /** ファイル名。 */
+    /** File name. */
     FILE_NAME     ( R.string.file_name               ),
-    /** データサイズ。 */
+    /** Data size. */
     DATA_SIZE     ( R.string.data_size               ),
-    /** 更新日時。 */
+    /** Last modified date. */
     LAST_MODIFIED ( R.string.last_modified           ),
-    /** URI。 */
+    /** URI. */
     DATA_URI      ( R.string.data_uri                );
 
 
 
-    /** プロパティのキー名に付く接頭語。 */
+    /** Prefix to property key name. */
     public static final String KEY_PREFIX = "ALBUM_ART";
 
-    /** 名称のID。 */
+    /** Name id */
     private int nameId;
-    /** プロパティのキー名。 */
+    /** Property key name */
     private String keyName;
 
-    /** プロパティの名称IDを取得。 */
+    /** Get property name id. */
     public int getNameId() {
         return this.nameId;
     }
-    /** プロパティの名称を取得。 */
+    /** Get property name. */
     public String getName(Context context) {
         return context.getString(nameId);
     }
-    /** プロパティのキー名を取得。 */
+    /** Get property key name. */
     public String getKeyName() {
         return keyName;
     }
 
-    /** コンストラクタ。 */
+    /** Constructor. */
     AlbumArtProperty(int nameId) {
         this.nameId = nameId;
         this.keyName = KEY_PREFIX + "_" + this.name();
@@ -64,10 +62,10 @@ public enum AlbumArtProperty implements IProperty {
 
 
 
-    // Key-Property map
+    // static
 
     /**
-     * キー名とプロパティの対応。
+     * Map of key name and property.
      */
     private static final Map<String, AlbumArtProperty> keyPropertyMap = new HashMap<String, AlbumArtProperty>() {{
         for (AlbumArtProperty p : AlbumArtProperty.values()) {
@@ -76,33 +74,11 @@ public enum AlbumArtProperty implements IProperty {
     }};
 
     /**
-     * キー名に対応するプロパティを取得。
-     * @param keyName キー名。
-     * @return プロパティ。
+     * Get property of key name.
+     * @param keyName Key name.
+     * @return Property.
      */
     public static AlbumArtProperty valueOfKey(String keyName) {
         return keyPropertyMap.get(keyName);
     }
-
-
-
-    // Shortening
-
-    /** 省略可否を取得。 */
-    public boolean enableShortening() {
-        return getShorteningSet().contains(this);
-    }
-
-    /** 省略可のプロパティセットを取得。 */
-    public static HashSet<AlbumArtProperty> getShorteningSet() {
-        return shorteningSet;
-    }
-
-    /** 省略可のプロパティセット。 */
-    private static HashSet<AlbumArtProperty> shorteningSet = new HashSet<AlbumArtProperty>() {{
-        add( RESOURCE_TYPE );
-        add( FOLDER_PATH   );
-        add( FILE_NAME     );
-        add( LAST_MODIFIED );
-    }};
 }

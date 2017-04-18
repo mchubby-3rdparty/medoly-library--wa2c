@@ -1,20 +1,22 @@
 package com.wa2c.android.medoly.library;
 
-/** プラグインアクション。 */
+/**
+ * Plugin action.
+ */
 public enum PluginAction {
-    /** メディアプラグイン。 */
+    /** Media action plugin. */
     ACTION_MEDIA,
-    /** 検索プラグイン。 */
+    /** Search action plugin. */
     ACTION_SEARCH;
 
-    /** コンストラクタ。 */
+    /** Constructor. */
     PluginAction() {
         actionValue = "com.wa2c.android.medoly.plugin.action." + this.name();
     }
 
-    /** アクションの値。 */
+    /** Action value. */
     private String actionValue;
-    /** アクションの値を取得。 */
+    /** Get action value. */
     public String getActionValue() {
         return actionValue;
     }

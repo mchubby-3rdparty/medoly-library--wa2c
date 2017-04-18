@@ -51,21 +51,4 @@ public enum QueueProperty implements IProperty {
         this.keyName = KEY_PREFIX + "_" + this.name();
     }
 
-
-
-    // Shortening
-
-    /** 省略可否を取得。 */
-    public boolean enableShortening() {
-        return getShorteningSet().contains(this);
-    }
-
-    /** 省略可のプロパティセットを取得。 */
-    public static HashSet<QueueProperty> getShorteningSet() {
-        return shorteningSet;
-    }
-
-    /** 省略可のプロパティセット。 */
-    private static HashSet<QueueProperty> shorteningSet = new HashSet<QueueProperty>() {{
-    }};
 }

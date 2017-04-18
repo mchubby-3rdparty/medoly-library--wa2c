@@ -223,47 +223,4 @@ public enum MediaProperty implements IProperty {
         return keyPropertyMap.get(keyName);
     }
 
-
-
-    // Shortening
-
-    /** 省略可否を取得。 */
-    public boolean enableShortening() {
-        return getShorteningSet().contains(this);
-    }
-
-    /** 省略可のプロパティセットを取得。 */
-    public static HashSet<MediaProperty> getShorteningSet() {
-        return shorteningSet;
-    }
-
-    /** 省略可のプロパティセット。 */
-    private static HashSet<MediaProperty> shorteningSet = new HashSet<MediaProperty>() {{
-        add(TITLE);
-        add(ARTIST);
-        add(ORIGINAL_ARTIST);
-        add(ALBUM_ARTIST);
-        add(ALBUM);
-        add(ORIGINAL_ALBUM);
-        add(GENRE);
-        add(MOOD);
-        add(OCCASION);
-        add(COMPOSER);
-        add(ARRANGER);
-        add(LYRICIST);
-        add(ORIGINAL_LYRICIST);
-        add(CONDUCTOR);
-        add(PRODUCER);
-        add(ENGINEER);
-        add(ENCODER);
-        add(MIXER);
-        add(DJMIXER);
-        add(REMIXER);
-        add(COPYRIGHT);
-        add(RECORD_LABEL);
-        add(COMMENT);
-        add(FOLDER_PATH);
-        add(FILE_NAME);
-        add(LAST_MODIFIED);
-    }};
 }

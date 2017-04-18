@@ -1,20 +1,24 @@
 package com.wa2c.android.medoly.library;
 
 /**
- * 歌詞のデータ種別。
+ * Lyrics resource type.
  */
 public enum LyricsResourceType {
-    /** 内蔵。 */
+    /** Built-in lyrics. */
     INTERNAL(R.string.lyrics_resource_internal),
-    /** 外部ファイル。 */
+    /** External file lyrics. */
     EXTERNAL(R.string.lyrics_resource_file),
-    /** 外部サービス。 */
+    /** External service lyrics. */
     SERVICE(R.string.lyrics_resource_service);
 
-    /** 初期化。 */
-    LyricsResourceType(int id) { this.nameId = id; }
-    /** 名前のID。 */
+    /** Constructor. */
+    LyricsResourceType(int id) {
+        this.nameId = id;
+    }
+    /** Name id. */
     private int nameId;
-    /** 名前のIDを取得する。 */
-    public int getNameId() { return nameId; }
+    /** Get name id. */
+    public int getNameId() {
+        return nameId;
+    }
 }

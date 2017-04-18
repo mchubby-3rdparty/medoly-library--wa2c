@@ -1,30 +1,31 @@
 package com.wa2c.android.medoly.library;
 
-/** プラグイン操作カテゴリ。 */
+/**
+ * Plugin operation category.
+ */
 public enum PluginOperationCategory {
-    /** 実行 */
+    /** Execute. */
     OPERATION_EXECUTE,
-    /** メディア開始。 */
+    /** Open media. */
     OPERATION_MEDIA_OPEN,
-    /** 再生開始。 */
+    /** Start playing. */
     OPERATION_PLAY_START,
-    /** 再生停止。 */
+    /** Stop playing. */
     OPERATION_PLAY_STOP,
-    /** メディア終了。 */
+    /** Close media. */
     OPERATION_MEDIA_CLOSE,
-    /** 再生中。 */
+    /** Now playing. */
     OPERATION_PLAY_NOW,
-    /** 再生完了。 */
+    /** Complete playing. */
     OPERATION_PLAY_COMPLETE;
 
-    /** コンストラクタ。 */
+    /** Constructor. */
     PluginOperationCategory() {
         categoryValue = "com.wa2c.android.medoly.plugin.category." + this.name();
     }
-
-    /** カテゴリの値。 */
+    /** Category value. */
     private String categoryValue;
-    /** カテゴリの値を取得。 */
+    /** Get category value. */
     public String getCategoryValue() {
         return categoryValue;
     }
