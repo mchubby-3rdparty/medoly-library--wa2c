@@ -1,5 +1,8 @@
 package com.wa2c.android.medoly.library;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+
 /**
  * Lyrics resource type.
  */
@@ -11,14 +14,23 @@ public enum LyricsResourceType {
     /** External service lyrics. */
     SERVICE(R.string.lyrics_resource_service);
 
+
+
     /** Constructor. */
     LyricsResourceType(int id) {
         this.nameId = id;
     }
+
     /** Name id. */
     private int nameId;
-    /** Get name id. */
+
+    /** Get the name id. */
     public int getNameId() {
         return nameId;
     }
+    /** Get the name. */
+    public String getName(@NonNull Context context) {
+        return context.getString(nameId);
+    }
+
 }

@@ -9,6 +9,8 @@ public enum PluginAction {
     /** Search action plugin. */
     ACTION_SEARCH;
 
+
+
     /** Constructor. */
     PluginAction() {
         actionValue = "com.wa2c.android.medoly.plugin.action." + this.name();
@@ -16,8 +18,9 @@ public enum PluginAction {
 
     /** Action value. */
     private String actionValue;
-    /** Get action value. */
+    /** Get the action value. */
     public String getActionValue() {
         return actionValue;
     }
+
 }

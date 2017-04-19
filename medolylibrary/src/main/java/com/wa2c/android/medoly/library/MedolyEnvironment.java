@@ -1,6 +1,8 @@
 package com.wa2c.android.medoly.library;
 
-
+/**
+ * Medoly environment values.
+ */
 public class MedolyEnvironment {
     /** Medoly package. */
     public static String MEDOLY_PACKAGE = "com.wa2c.android.medoly";
@@ -12,14 +14,14 @@ public class MedolyEnvironment {
 
     // Plugin intent keys
 
-    /** アクションID */
+    /** Action ID. */
     public static final String PLUGIN_ACTION_ID = "action_id";
-    /** 呼び出し元パッケージ名。 */
+    /** Source package name. */
     public static final String PLUGIN_SRC_PACKAGE = "src_package";
 
-    /** 値マップのキー。 */
+    /** Property data intent key. */
     public static final String PLUGIN_VALUE_KEY  = "value_map";
-    /** 拡張値マップのキー。 */
+    /**  拡張値マップのキー。 */
     public static final String PLUGIN_EXTRA_KEY  = "extra_map";
     /** イベントキー。 */
     public static final String PLUGIN_EVENT_KEY = "is_event";

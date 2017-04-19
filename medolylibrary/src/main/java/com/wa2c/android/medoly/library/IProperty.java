@@ -2,6 +2,7 @@ package com.wa2c.android.medoly.library;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 /**
  * Property interface.
@@ -9,8 +10,8 @@ import android.content.Context;
 public interface IProperty {
     /** Get property name id. */
     int getNameId();
-    /** Get property name. */
-    String getName(Context context);
-    /** Get property key name. */
+    /** Get the property name. */
+    String getName(@NonNull Context context);
+    /** Get the property key name. */
     String getKeyName();
 }

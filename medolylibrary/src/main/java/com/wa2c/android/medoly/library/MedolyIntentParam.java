@@ -9,39 +9,38 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Intentパラメータ。
+ * Intent parameters.
  */
 public class MedolyIntentParam {
 
-    /** プロパティ情報。 */
+    /** Property data. */
     private PropertyData propertyData;
-    /** プロパティ拡張情報 */
+    /** Property extra data. */
     private PropertyData propertyExtraData;
 
-    /** アクションID。 */
+    /** Action ID.。 */
     private String actionId;
-    /** 送信元パッケージ名。 */
+    /** Source package name. */
     private String srcPackage;
-    /** イベント状態。 */
+    /** Event state. */
     private boolean isEvent;
-    /** カテゴリー情報。 */
+    /** Category info. */
     private Set<String> categorySet;
-    /** キー情報。 */
+    /** Key info. */
     private Set<String> keySet;
 
-
-    /** メディアURI。 */
+    /** Media URI. */
     private Uri mediaUri;
-    /** アルバムアートURI。 */
+    /** Album art URI. */
     private Uri albumArtUri;
-    /** 歌詞URI。 */
+    /** Lyrics URI. */
     private Uri lyricsUri;
 
 
 
     /**
-     * コンストラクタ。
-     * @param intent インテント。
+     * Constructor.
+     * @param intent A intent.
      */
     public MedolyIntentParam(Intent intent) {
         if (intent.hasExtra(MedolyEnvironment.PLUGIN_VALUE_KEY)) {
@@ -50,6 +49,8 @@ public class MedolyIntentParam {
                 this.propertyData = new PropertyData((Map<String, List<String>>) serializable);
             }
         }
+        if (this.propertyData == null)
+            this.propertyData = new PropertyData();
 
         if (intent.hasExtra(MedolyEnvironment.PLUGIN_EXTRA_KEY)) {
             Serializable serializable = intent.getSerializableExtra(MedolyEnvironment.PLUGIN_EXTRA_KEY);
@@ -57,6 +58,8 @@ public class MedolyIntentParam {
                 this.propertyExtraData = new PropertyData((Map<String, List<String>>) serializable);
             }
         }
+        if (this.propertyExtraData == null)
+            this.propertyExtraData = new PropertyData();
 
 
         this.actionId = intent.getStringExtra(MedolyEnvironment.PLUGIN_ACTION_ID);
@@ -82,59 +85,59 @@ public class MedolyIntentParam {
 
 
     /**
-     * プロパティ情報を取得。
-     * @return プロパティ情報。
+     * Get the property data.
+     * @return Tge property data.
      */
     public PropertyData getPropertyData() {
         return this.propertyData;
     }
 
     /**
-     * アクションIDを取得。
-     * @return アクションID。
+     * Get the action ID.
+     * @return The action ID.
      */
     public String getActionId() {
         return this.actionId;
     }
 
     /**
-     * 送信元パッケージ名を取得
-     * @return 送信元パッケージ。
+     * Get the source package name.
+     * @return The source package name.
      */
     public String getSrcPackage() {
         return srcPackage;
     }
 
     /**
-     * イベント状態をチェック。
-     * @return イベント実行の場合はtrue。
+     * Check the event state.
+     * @return  True as event.
      */
     public boolean isEvent() {
         return isEvent;
     }
 
     /**
-     * プラグイン操作カテゴリの有無をチェック。
-     * @param category プラグイン操作カテゴリ。
-     * @return カテゴリが存在する場合はtrue。
+     * Check if the plugin operation category exists.
+     * @param category A plugin operation category.
+     * @return True if the category exits.
      */
     public boolean hasCategories(PluginOperationCategory category) {
         return categorySet.contains(category.getCategoryValue());
     }
 
     /**
-     * プラグイン種別カテゴリの有無をチェック。
-     * @param category プラグイン種別カテゴリ。
-     * @return カテゴリが存在する場合はtrue。
+     * Check if the plugin type category exists.
+     * @param category Plugin type category.
+     * @return True if the category exits.
      */
     public boolean hasCategories(PluginTypeCategory category) {
         return categorySet.contains(category.getCategoryValue());
     }
 
     /**
-     * 実行IDの有無をチェック。
-     * @param id 実行ID。
-     * @return 実行IDが存在する場合はtrue。
+     * Check if the execute ID exists.
+     * @param id A execute ID.
+     * @return True if the execute ID exists.
      */
     public boolean hasExecuteId(String id) {
         return keySet.contains(id) || keySet.contains("execute_id_" + id);
@@ -144,24 +147,24 @@ public class MedolyIntentParam {
 
 
     /**
-     * メディアURIを取得。
-     * @return メディアURI。
+     * Get the media URI.
+     * @return The media URI.
      */
     public Uri getMediaUri() {
         return mediaUri;
     }
 
     /**
-     * アルバムアートURIを取得。
-     * @return アルバムアートURI。
+     * Get the album art URI.
+     * @return The album art URI.
      */
     public Uri getAlbumArtUri() {
         return albumArtUri;
     }
 
     /**
-     * 歌詞URIを取得。
-     * @return 歌詞URI。
+     * Get the lyrics URI.
+     * @return The lyrics URI.
      */
     public Uri getLyricsUri() {
         return lyricsUri;
@@ -170,8 +173,8 @@ public class MedolyIntentParam {
 
 
     /**
-     * 返信インテントを作成。
-     * @return 返信インテント。
+     * Create a response intent.
+     * @return A response intent.
      */
     public Intent createReturnIntent() {
         Intent returnIntent = new Intent(PluginAction.ACTION_MEDIA.getActionValue());

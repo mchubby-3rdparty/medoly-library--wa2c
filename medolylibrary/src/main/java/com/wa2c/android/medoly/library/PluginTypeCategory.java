@@ -25,14 +25,18 @@ public enum PluginTypeCategory {
     /** Put property plugin. */
     TYPE_PUT_PROPERTY;
 
+
+
     /** Constructor. */
     PluginTypeCategory() {
         categoryValue = "com.wa2c.android.medoly.plugin.category." + this.name();
     }
+
     /** Category value. */
     private String categoryValue;
-    /** Get category value. */
+    /** Get the category value. */
     public String getCategoryValue() {
         return categoryValue;
     }
+
 }

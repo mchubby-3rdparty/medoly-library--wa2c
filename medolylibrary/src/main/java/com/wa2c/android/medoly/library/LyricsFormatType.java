@@ -1,5 +1,8 @@
 package com.wa2c.android.medoly.library;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+
 /**
  * Lyrics format type.
  */
@@ -32,6 +35,8 @@ public enum LyricsFormatType {
     /** MP3 Lyrics3 v2 field. */
     MP3_LYRICS3V2(R.string.lyrics_format_mp3_lyrics3v2, null);
 
+
+
     /** Constructor. */
     LyricsFormatType(int id, String mimeType) {
         this.nameId = id;
@@ -43,9 +48,14 @@ public enum LyricsFormatType {
     /** MIME Type */
     private String mimeType;
 
-    /** Get name id. */
+    /** Get the name id. */
     public int getNameId() { return nameId; }
-    /** Get MIME Type. */
+    /** Get the name. */
+    public String getName(@NonNull Context context) {
+        return context.getString(nameId);
+    }
+    /** Get the MIME Type. */
     public String getMimeType() { return mimeType; }
+
 }
 

@@ -1,53 +1,65 @@
 package com.wa2c.android.medoly.library;
 
-import android.content.Intent;
 import android.text.TextUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
- * プロパティデータ。
+ * Property data.
  */
 public class PropertyData extends HashMap<String, List<String>> {
 
     /**
-     * コンストラクタ。
+     * Constructor.
      */
     public PropertyData() {
         super();
     }
 
     /**
-     * コピーコンストラクタ。
-     * @param propertyData プロパティデータ。
+     * Copy constructor.
+     * @param propertyData property data.
      */
     public PropertyData(PropertyData propertyData) {
         super(propertyData);
     }
 
     /**
-     * コピーコンストラクタ。
-     * @param propertyData プロパティデータ。
+     * Copy constructor.
+     * @param propertyData property data.
      */
     public PropertyData(Map<String, List<String>> propertyData) {
         super(propertyData);
     }
 
 
+    /**
+     * Returns true if this map contains a mapping for the specified key.
+     * @param key A property key.
+     * @return true if this map contains a mapping for the specified key.
+     */
     @Override
     public boolean containsKey(Object key) {
         return super.containsKey(key);
     }
 
+    /**
+     * Returns true if this map contains a mapping for the specified key.
+     * @param key A property key.
+     * @return true if this map contains a mapping for the specified key.
+     */
     public boolean containsKey(IProperty key) {
         return super.containsKey(key.getKeyName());
     }
 
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value A property value.
+     * @return true if this map maps one or more keys to the specified value.
+     */
     @Override
     public boolean containsValue(Object value) {
         try {
@@ -57,6 +69,11 @@ public class PropertyData extends HashMap<String, List<String>> {
         }
     }
 
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value A property value.
+     * @return true if this map maps one or more keys to the specified value.
+     */
     public boolean containsValue(List<String> value) {
         if (value == null)
             return false;
@@ -68,6 +85,11 @@ public class PropertyData extends HashMap<String, List<String>> {
         return false;
     }
 
+    /**
+     * Removes the mapping for a key from this map if it is present (optional operation).
+     * @param key key whose mapping is to be removed from the map.
+     * @return the previous value associated with key, or null if there was no mapping for key.
+     */
     public List<String> remove(IProperty key) {
         return super.remove(key.getKeyName());
     }
@@ -75,27 +97,27 @@ public class PropertyData extends HashMap<String, List<String>> {
 
 
     /**
-     * プロパティを取得
-     * @param key プロパティキー。
-     * @return プロパティ値。
+     * Get the property value list.
+     * @param key A property key.
+     * @return The property value list.
      */
     public List<String> get(String key) {
         return super.get(key);
     }
 
     /**
-     * プロパティを取得
-     * @param key プロパティキー。
-     * @return プロパティ値。
+     * Get property value list.
+     * @param key A property key.
+     * @return The property value list.
      */
     public List<String> get(IProperty key) {
         return super.get(key.getKeyName());
     }
 
     /**
-     * 先頭のプロパティを取得。
-     * @param key プロパティキー。
-     * @return プロパティ値。
+     * Get the first property value.
+     * @param key A property key.
+     * @return The first property value.
      */
     public String getFirst(String key) {
         List<String> list = super.get(key);
@@ -105,9 +127,9 @@ public class PropertyData extends HashMap<String, List<String>> {
     }
 
     /**
-     * 先頭のプロパティを取得。
-     * @param key プロパティキー。
-     * @return プロパティ値。
+     * Get the first property value.
+     * @param key A property key.
+     * @return The first property value.
      */
     public String getFirst(IProperty key) {
         return this.getFirst(key.getKeyName());
@@ -115,27 +137,27 @@ public class PropertyData extends HashMap<String, List<String>> {
 
 
     /**
-     * 新しいプロパティ値を設定。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     * Put the new property value list.
+     * @param key A property key.
+     * @param value The property value list.
      */
     public List<String> put(String key, List<String> value) {
         return super.put(key, value);
     }
 
     /**
-     * 新しいプロパティ値を設定。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     * Put the new property value list.
+     * @param key A property key.
+     * @param value The property value list.
      */
     public List<String> put(IProperty key, List<String> value) {
         return super.put(key.getKeyName(), value);
     }
 
     /**
-     * 新しいプロパティ値を設定。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     * Put the new property value.
+     * @param key A property key.
+     * @param value The property value.
      */
     public List<String> put(String key, String value) {
         List<String> list = new ArrayList<>();
@@ -144,9 +166,9 @@ public class PropertyData extends HashMap<String, List<String>> {
     }
 
     /**
-     * 新しいプロパティ値を設定。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     * Put the new property value.
+     * @param key A property key.
+     * @param value The property value.
      */
     public List<String>  put(IProperty key, String value) {
         return this.put(key.getKeyName(), value);
@@ -155,9 +177,9 @@ public class PropertyData extends HashMap<String, List<String>> {
 
 
     /**
-     * 先頭にプロパティ値を挿入。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     * Insert the property value to first position.
+     * @param key A property key.
+     * @param value The property value.
      */
     public void insertFirst(String key, String value) {
         List<String> list = get(key);
@@ -169,18 +191,18 @@ public class PropertyData extends HashMap<String, List<String>> {
     }
 
     /**
-     * 先頭にプロパティ値を挿入。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     * Insert the property value to first position.
+     * @param key A property key.
+     * @param value The property value.
      */
     public void insertFirst(IProperty key, String value) {
         this.insertFirst(key.getKeyName(), value);
     }
 
-    /**
-     * 末尾にプロパティ値を追加。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     /**
+     * Insert the property value to last position.
+     * @param key A property key.
+     * @param value The property value.
      */
     public void insertLast(String key, String value) {
         List<String> list = get(key);
@@ -192,9 +214,9 @@ public class PropertyData extends HashMap<String, List<String>> {
     }
 
     /**
-     * 末尾にプロパティ値を追加。
-     * @param key プロパティキー。
-     * @param value プロパティ値。
+     * Insert the property value to last position.
+     * @param key A property key.
+     * @param value The property value.
      */
     public void insertLast(IProperty key, String value) {
         this.insertLast(key.getKeyName(), value);
@@ -203,38 +225,38 @@ public class PropertyData extends HashMap<String, List<String>> {
 
 
     /**
-     * 値を改行で連結してテキストとして返す。
-     * @param key プロパティキー。
-     * @return テキスト。
+     * Get the values concatenated by line breaks as text.
+     * @param key A property key.
+     * @return The concatenated property text.
      */
     public String getText(IProperty key) {
         return getText(key.getKeyName(), "\n");
     }
 
     /**
-     * 値を改行で連結してテキストとして返す。
-     * @param key プロパティキー。
-     * @return テキスト。
+     * Get the values concatenated by line breaks as text.
+     * @param key A property key.
+     * @return The concatenated property text.
      */
     public String getText(String key) {
         return getText(key, "\n");
     }
 
     /**
-     * 値を連結してテキストとして返す。
-     * @param key プロパティキー。
-     * @param separator 連結文字列。
-     * @return テキスト。
+     * Get the values concatenated by separator as text.
+     * @param key A property key.
+     * @param separator A separator.
+     * @return The concatenated property text.
      */
     public String getText(IProperty key, String separator) {
         return getText(key.getKeyName(), separator);
     }
 
     /**
-     * 値を連結してテキストとして返す。
-     * @param key プロパティキー。
-     * @param separator 連結文字列。
-     * @return テキスト。
+     * Get the values concatenated by separator as text.
+     * @param key A property key.
+     * @param separator A separator.
+     * @return The concatenated property text.
      */
     public String getText(String key, String separator) {
         List<String> list = this.get(key);
@@ -253,52 +275,61 @@ public class PropertyData extends HashMap<String, List<String>> {
     }
 
     /**
-     * メディアの存在を確認。
-     * @return メディアが存在する場合はtrue。
+     * Returns true if this property has media data.
+     * @return true if this map has no media data.
      */
     public boolean isMediaEmpty() {
         return TextUtils.isEmpty(this.getFirst(MediaProperty.DATA_URI));
     }
 
     /**
-     * アルバムアートの存在を確認。
-     * @return アルバムアートが存在する場合はtrue。
+     * Returns true if this property has album art data.
+     * @return true if this map has no album art data.
      */
     public boolean isAlbumArtEmpty() {
         return TextUtils.isEmpty(this.getFirst(AlbumArtProperty.RESOURCE_TYPE));
     }
 
     /**
-     * 歌詞の有無を確認。
-     * @return 歌詞が存在する場合はtrue。
+     * Returns true if this property has lyrics data.
+     * @return true if this map has no lyrics data.
      */
     public boolean isLyricsEmpty() {
         return TextUtils.isEmpty(this.getFirst(LyricsProperty.RESOURCE_TYPE));
     }
 
     /**
-     * データの有無を確認。
-     * @return データ無しの場合はtrue。
+     * Returns true if this map contains no key-value mappings.
+     * @return true if this map contains no key-value mappings.
      */
     public boolean isEmpty(IProperty key) {
         return this.isEmpty(key.getKeyName());
     }
 
     /**
-     * データの有無を確認。
-     * @return データ無しの場合はtrue。
+     * Returns true if this map contains no key-value mappings.
+     * @param key key whose presence in this map is to be tested.
+     * @return true if this map contains no key-value mappings.
      */
     public boolean isEmpty(String key) {
         List<String> list = this.get(key);
         return (list == null || list.size() == 0);
     }
 
+
+    /**
+     * Creates and returns a copy of this object.
+     * @return A clone of this instance.
+     */
     @Override
     public PropertyData clone() {
         return (PropertyData)super.clone();
     }
 
-
+    /**
+     * Compares the specified object with this map for equality.
+     * @return true if the specified object is equal to this map.
+     */
     @Override
     public boolean equals(Object object) {
         if (object == null || !(object instanceof Map))
@@ -317,17 +348,29 @@ public class PropertyData extends HashMap<String, List<String>> {
         return true;
     }
 
+    /**
+     * Compares the specified object with this map for equality.
+     * @param property A property key.
+     * @param list A property value list.
+     * @return true if the specified object is equal to this map.
+     */
     public boolean equals(IProperty property, List<String> list) {
         return this.equals(property.getKeyName(), list);
     }
 
+    /**
+     * Compares the specified object with this map for equality.
+     * @param property A property key.
+     * @param list A property value list.
+     * @return true if the specified object is equal to this map.
+     */
     public boolean equals(String property, List<String> list) {
         List<String> thisList = this.get(property);
         if (list == null || thisList == null || list.size() != thisList.size())
             return false;
 
         if (list.size() == 0 && thisList.size() == 0)
-            return false;
+            return true;
 
         for (int i = 0; i < list.size(); i++) {
             String a = list.get(i);

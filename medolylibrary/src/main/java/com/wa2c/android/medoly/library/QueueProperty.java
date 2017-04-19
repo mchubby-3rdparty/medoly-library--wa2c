@@ -1,54 +1,77 @@
 package com.wa2c.android.medoly.library;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 再生キューのプロパティ情報。
+ * Play queue property.
  */
 public enum QueueProperty implements IProperty {
+    /** Current media position, */
     CURRENT_POSITION ( R.string.queue_current_position ),
-    /** 現在の再生曲No。 */
+    /** Current queue no, */
     CURRENT_NO       ( R.string.queue_current_no       ),
-    /** 合計再生曲数。 */
+    /** Current queue total. */
     TOTAL_COUNT      ( R.string.queue_total_count      ),
-    /** 再生済曲数。 */
+    /** Current played queue total count. */
     PLAYED_COUNT     ( R.string.queue_played_count     ),
-    /** 合計再生時間。 */
+    /** Current queue total time. */
     TOTAL_TIME       ( R.string.queue_total_time       ),
-    /** 再生済時間。 */
+    /** Current played queue total time. */
     PLAYED_TIME      ( R.string.queue_played_time      ),
-    /** ループ回数。 */
+    /** Current media loop count. */
     LOOP_COUNT       ( R.string.queue_loop_count       );
 
 
 
-    /** プロパティのキー名に付く接頭語。 */
-    public static final String KEY_PREFIX = "QUEUE";
+    /** Constructor. */
+    QueueProperty(int nameId) {
+        this.nameId = nameId;
+        this.keyName = KEY_PREFIX + "_" + this.name();
+    }
 
-    /** 名称のID。 */
+    /** Name id */
     private int nameId;
-    /** プロパティのキー名。 */
+    /** Property key name */
     private String keyName;
 
-    /** プロパティの名称IDを取得。 */
+    /** Get the property name id. */
     public int getNameId() {
         return this.nameId;
     }
-    /** プロパティの名称を取得。 */
-    public String getName(Context context) {
+    /** Get the property name. */
+    public String getName(@NonNull Context context) {
         return context.getString(nameId);
     }
-    /** プロパティのキー名を取得。 */
+    /** Get the property key name. */
     public String getKeyName() {
         return keyName;
     }
 
-    /** コンストラクタ。 */
-    QueueProperty(int nameId) {
-        this.nameId = nameId;
-        this.keyName = KEY_PREFIX + "_" + this.name();
+    // static
+
+    /** Prefix to property key name. */
+    public static final String KEY_PREFIX = "QUEUE";
+
+    /**
+     * Map of a key name and a property.
+     */
+    private static final Map<String, QueueProperty> keyPropertyMap = new HashMap<String, QueueProperty>() {{
+        for (QueueProperty p : QueueProperty.values()) {
+            put(p.getKeyName(), p);
+        }
+    }};
+
+    /**
+     * Get the property from a key name.
+     * @param keyName A key name.
+     * @return The property.
+     */
+    public static QueueProperty valueOfKey(String keyName) {
+        return keyPropertyMap.get(keyName);
     }
 
 }

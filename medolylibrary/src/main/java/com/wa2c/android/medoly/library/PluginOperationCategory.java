@@ -19,14 +19,17 @@ public enum PluginOperationCategory {
     /** Complete playing. */
     OPERATION_PLAY_COMPLETE;
 
+
+
     /** Constructor. */
     PluginOperationCategory() {
         categoryValue = "com.wa2c.android.medoly.plugin.category." + this.name();
     }
     /** Category value. */
     private String categoryValue;
-    /** Get category value. */
+    /** Get the category value. */
     public String getCategoryValue() {
         return categoryValue;
     }
+
 }

@@ -1,107 +1,107 @@
 package com.wa2c.android.medoly.library;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 /**
- * メディアのプロパティ情報。
+ * Media property.
  */
 public enum MediaProperty implements IProperty {
-    /** タイトル。 */
+    /** Title */
     TITLE                        ( R.string.media_title                         ),
 
-    /** アーティスト。 */
+    /** Artist. */
     ARTIST                       ( R.string.media_artist                        ),
-    /** オリジナルアーティスト。 */
+    /** Original Artist. */
     ORIGINAL_ARTIST              ( R.string.media_original_artist               ),
-    /** アルバムアーティスト。 */
+    /** Album artist. */
     ALBUM_ARTIST                 ( R.string.media_album_artist                  ),
 
-    /** アルバム。 */
+    /** Album. */
     ALBUM                        ( R.string.media_album                         ),
-    /** オリジナルアルバム。 */
+    /** Original album. */
     ORIGINAL_ALBUM               ( R.string.media_original_album                ),
 
-    /** ジャンル。 */
+    /** Genre. */
     GENRE                        ( R.string.media_genre                         ),
-    /** ムード。 */
+    /** Mood. */
     MOOD                         ( R.string.media_mood                          ),
-    /** シーン。 */
+    /** Occasion. */
     OCCASION                     ( R.string.media_occasion                      ),
 
-    /** 年。 */
+    /** Year. */
     YEAR                         ( R.string.media_year                          ),
-    /** オリジナル年。 */
+    /** Original year. */
     ORIGINAL_YEAR                ( R.string.media_original_year                 ),
 
-    /** 作曲者。 */
+    /** Composer. */
     COMPOSER                     ( R.string.media_composer                      ),
-    /** 編曲者。 */
+    /** Arranger. */
     ARRANGER                     ( R.string.media_arranger                      ),
-    /** 作詞者。 */
+    /** Lyricist. */
     LYRICIST                     ( R.string.media_lyricist                      ),
-    /** オリジナル作詞者。 */
+    /** Original lyricist. */
     ORIGINAL_LYRICIST            ( R.string.media_original_lyricist             ),
-    /** 指揮者  */
+    /** Conductor. */
     CONDUCTOR                    ( R.string.media_conductor                     ),
-    /** プロデューサ。 */
+    /** Producer. */
     PRODUCER                     ( R.string.media_producer                      ),
-    /** エンジニア。 */
+    /** Engineer. */
     ENGINEER                     ( R.string.media_engineer                      ),
-    /** エンコーダ。 */
+    /** Encoder. */
     ENCODER                      ( R.string.media_encoder                       ),
-    /** ミキサ。 */
+    /** Mixer. */
     MIXER                        ( R.string.media_mixer                         ),
-    /** DJミキサ。 */
+    /** DJ mixer. */
     DJMIXER                      ( R.string.media_djmixer                       ),
-    /** リミキサ。 */
+    /** Remixer. */
     REMIXER                      ( R.string.media_remixer                       ),
-    /** 著作権。 */
+    /** Copyright. */
     COPYRIGHT                    ( R.string.media_copyright                     ),
-    /** レーベル。 */
+    /** Label. */
     RECORD_LABEL                 ( R.string.media_record_label                  ),
 
-    /** メディア。 */
+    /** Media. */
     MEDIA                        ( R.string.media_media                         ),
-    /** ディスクNo。 */
+    /** Disc no. */
     DISC                         ( R.string.media_disc                          ),
-    /** ディスク合計。 */
+    /** Disc total. */
     DISC_TOTAL                   ( R.string.media_disc_total                    ),
-    /** トラックNo。 */
+    /** Track no. */
     TRACK                        ( R.string.media_track                         ),
-    /** トラック合計。 */
+    /** Track total. */
     TRACK_TOTAL                  ( R.string.media_track_total                   ),
 
-    /** コメント。 */
+    /** Comment. */
     COMMENT                      ( R.string.media_comment                       ),
 
-    /** ループ開始。 */
+    /** Loop start. */
     LOOP_START                   ( R.string.media_loop_start                    ),
-    /** ループの長さ。  */
+    /** Loop length.  */
     LOOP_LENGTH                  ( R.string.media_loop_length                   ),
-    /** テンポ。 */
+    /** Tempo. */
     TEMPO                        ( R.string.media_tempo                         ),
-    /** BPM。 */
+    /** BPM. */
     BPM                          ( R.string.media_bpm                           ),
-    /** FBPM。 */
+    /** BPM for floating point value. */
     FBPM                         ( R.string.media_fbpm                          ),
 
-    /** 品質。 */
+    /** Quality. */
     QUALITY                      ( R.string.media_quality                       ),
-    /** レーティング。  */
+    /** Rating. */
     RATING                       ( R.string.media_rating                        ),
 
-    /** 言語。 */
+    /** Language. */
     LANGUAGE                     ( R.string.media_language                      ),
-    /** スクリプト。 */
+    /** Script. */
     SCRIPT                       ( R.string.media_script                        ),
 
-    /** タグ。 */
+    /** Tag. */
     TAGS                         ( R.string.media_tags                          ),
-    /** キー。 */
+    /** Key. */
     KEY                          ( R.string.media_key                           ),
     /** Amazon ID。 */
     AMAZON_ID                    ( R.string.media_amazon_id                     ),
@@ -110,103 +110,116 @@ public enum MediaProperty implements IProperty {
     /** ISRC */
     ISRC                         ( R.string.media_isrc                          ),
 
-    // URI
+    /** Release official site URL. */
     URL_OFFICIAL_RELEASE_SITE    ( R.string.media_url_official_release_site     ),
+    /** Artist official site URL. */
     URL_OFFICIAL_ARTIST_SITE     ( R.string.media_url_official_artist_site      ),
+    /** Lyricist official site URL. */
     URL_LYRICS_SITE              ( R.string.media_url_lyrics_site               ),
 
     // Wikipedia URI
+    /** Release wikipedia URL. */
     URL_WIKIPEDIA_RELEASE_SITE   ( R.string.media_url_wikipedia_release_site    ),
+    /** Artist wikipedia URL. */
     URL_WIKIPEDIA_ARTIST_SITE    ( R.string.media_url_wikipedia_artist_site     ),
 
-    // Discogs URI
+    /** Release discography URL */
     URL_DISCOGS_RELEASE_SITE     ( R.string.media_url_discogs_release_site      ),
+    /** Artist discography URL. */
     URL_DISCOGS_ARTIST_SITE      ( R.string.media_url_discogs_artist_site       ),
 
-    // Music Brainz Information
+    /** MusicBrainz release ID. */
     MUSICBRAINZ_RELEASEID        ( R.string.media_musicbrainz_release_id        ),
+    /** MusicBrainz artist ID. */
     MUSICBRAINZ_ARTISTID         ( R.string.media_musicbrainz_artist_id         ),
+    /** MusicBrainz release artist ID. */
     MUSICBRAINZ_RELEASEARTISTID  ( R.string.media_musicbrainz_release_artist_id ),
+    /** MusicBrainz release group ID. */
     MUSICBRAINZ_RELEASE_GROUP_ID ( R.string.media_musicbrainz_release_group_id  ),
+    /** MusicBrainz disc ID. */
     MUSICBRAINZ_DISC_ID          ( R.string.media_musicbrainz_disc_id           ),
+    /** MusicBrainz track ID. */
     MUSICBRAINZ_TRACK_ID         ( R.string.media_musicbrainz_track_id          ),
+    /** MusicBrainz work ID. */
     MUSICBRAINZ_WORK_ID          ( R.string.media_musicbrainz_work_id           ),
+    /** MusicBrainz release status. */
     MUSICBRAINZ_RELEASE_STATUS   ( R.string.media_musicbrainz_release_status    ),
+    /** MusicBrainz release type. */
     MUSICBRAINZ_RELEASE_TYPE     ( R.string.media_musicbrainz_release_type      ),
+    /** MusicBrainz release country. */
     MUSICBRAINZ_RELEASE_COUNTRY  ( R.string.media_musicbrainz_release_country   ),
 
+    /** MusicIP ID. */
     MUSICIP_ID                   ( R.string.media_musicip_id                    ),
 
 
-    /** タグ種別。 */
+    /** Tag type. */
     TAG_TYPE                     ( R.string.media_tag_type                      ),
-    /** 文字コード。 */
+    /** Character encoding. */
     CHARACTER_ENCODING           ( R.string.media_character_encoding            ),
-    /** 音声フォーマット。 */
+    /** Media format. */
     FORMAT                       ( R.string.media_format                        ),
-    /** 音声エンコード種別。 */
+    /** Media encoding type. */
     ENCODING_TYPE                ( R.string.media_encoding_type                 ),
-    /** ビットレート。 */
+    /** Bit rate. */
     BIT_RATE                     ( R.string.media_bit_rate                      ),
-    /** サンプリングレート。 */
+    /** Sampling rate. */
     SAMPLE_RATE                  ( R.string.media_sample_rate                   ),
-    /** 音声チャンネル。 */
+    /** Audio channel. */
     CHANNELS                     ( R.string.media_channels                      ),
-    /** 曲の長さ。 */
+    /** Media duration. (ms) */
     DURATION                     ( R.string.media_duration                      ),
 
-    /** 取得元名称。 */
+    /** Source title. */
     SOURCE_TITLE                 ( R.string.source_title                        ),
-    /** 取得元URI。 */
+    /** Source URI. */
     SOURCE_URI                   ( R.string.source_uri                          ),
-    /** MIMEタイプ。 */
+    /** MIME Type. */
     MIME_TYPE                    ( R.string.mime_type                           ),
-    /** フォルダパス。 */
+    /** Folder path. */
     FOLDER_PATH                  ( R.string.folder_path                         ),
-    /** ファイル名。 */
+    /** File name. */
     FILE_NAME                    ( R.string.file_name                           ),
-    /** データサイズ。 */
+    /** Data size. */
     DATA_SIZE                    ( R.string.data_size                           ),
-    /** 更新日時。 */
+    /** Last modified date. */
     LAST_MODIFIED                ( R.string.last_modified                       ),
-    /** URI。 */
+    /** URI. */
     DATA_URI                     ( R.string.data_uri                            );
 
 
 
-    /** プロパティのキー名に付く接頭語。 */
-    public static final String KEY_PREFIX = "MEDIA";
-
-    /** 名称のID。 */
-    private int nameId;
-    /** プロパティのキー名。 */
-    private String keyName;
-
-    /** プロパティの名称IDを取得。 */
-    public int getNameId() {
-        return this.nameId;
-    }
-    /** プロパティの名称を取得。 */
-    public String getName(Context context) {
-        return context.getString(nameId);
-    }
-    /** プロパティのキー名を取得。 */
-    public String getKeyName() {
-        return keyName;
-    }
-
-    /** コンストラクタ。 */
+    /** Constructor. */
     MediaProperty(int nameId) {
         this.nameId = nameId;
         this.keyName = KEY_PREFIX + "_" + this.name();
     }
 
+    /** Name id */
+    private int nameId;
+    /** Property key name */
+    private String keyName;
 
+    /** Get the property name id. */
+    public int getNameId() {
+        return this.nameId;
+    }
+    /** Get the property name. */
+    public String getName(@NonNull Context context) {
+        return context.getString(nameId);
+    }
+    /** Get the property key name. */
+    public String getKeyName() {
+        return keyName;
+    }
 
-    // Key-Property map
+    // static
+
+    /** Prefix to property key name. */
+    public static final String KEY_PREFIX = "MEDIA";
 
     /**
-     * キー名とプロパティの対応。
+     * Map of a key name and a property.
      */
     private static final Map<String, MediaProperty> keyPropertyMap = new HashMap<String, MediaProperty>() {{
         for (MediaProperty p : MediaProperty.values()) {
@@ -215,9 +228,9 @@ public enum MediaProperty implements IProperty {
     }};
 
     /**
-     * キー名に対応するプロパティを取得。
-     * @param keyName キー名。
-     * @return プロパティ。
+     * Get the property from a key name.
+     * @param keyName A key name.
+     * @return The property.
      */
     public static MediaProperty valueOfKey(String keyName) {
         return keyPropertyMap.get(keyName);

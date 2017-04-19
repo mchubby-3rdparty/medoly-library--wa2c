@@ -16,9 +16,13 @@ public class PropertyDataTest {
     @Before
     public void setUp() throws Exception {
         propertyData = new PropertyData() {{
-            put(MediaProperty.TITLE, "Title1");
-            put(MediaProperty.ARTIST, "Artist1");
-            put(MediaProperty.ALBUM, "Album1");
+            put(MediaProperty.TITLE,  new ArrayList<String>() {{ add("Title1");  add("Title2");  }});
+            put(MediaProperty.ARTIST, new ArrayList<String>() {{ add("Artist1"); add("Artist2"); }});
+            put(MediaProperty.ALBUM,  new ArrayList<String>() {{ add("Album1");  add("Album1");  }});
+
+            put(MediaProperty.COMPOSER, new ArrayList<String>());
+            ArrayList<String> list = null;
+            put(MediaProperty.LYRICIST, list);
         }};
     }
 
@@ -36,16 +40,18 @@ public class PropertyDataTest {
         assertTrue(propertyData.containsKey(MediaProperty.ALBUM));
         assertTrue(propertyData.containsKey(MediaProperty.ALBUM.getKeyName()));
 
-        assertFalse(propertyData.containsKey(MediaProperty.DATA_URI));
+        assertTrue(propertyData.containsKey(MediaProperty.COMPOSER));
+        assertTrue(propertyData.containsKey(MediaProperty.LYRICIST));
+        assertFalse(propertyData.containsKey(MediaProperty.ARRANGER));
     }
 
     @Test
     public void containsValue() throws Exception {
+        assertFalse(propertyData.containsValue(null));
         assertFalse(propertyData.containsValue("Title1"));
-        assertTrue(propertyData.containsValue(new ArrayList<String>() {{ add("Title1"); }}));
-
-        propertyData.insertLast(MediaProperty.TITLE, "Title2");
+        assertFalse(propertyData.containsValue(new ArrayList<String>() {{ add("Title1"); }}));
         assertTrue(propertyData.containsValue(new ArrayList<String>() {{ add("Title1"); add("Title2"); }}));
+        assertTrue(propertyData.containsValue(new ArrayList<String>()));
     }
 
     @Test
@@ -65,7 +71,7 @@ public class PropertyDataTest {
     public void get() throws Exception {
         List<String> val = propertyData.get(MediaProperty.TITLE);
         assertNotNull(val);
-        assertTrue(val.equals(new ArrayList<String>() {{ add("Title1"); }}));
+        assertTrue(val.equals(new ArrayList<String>() {{ add("Title1"); add("Title2"); }}));
     }
 
     @Test

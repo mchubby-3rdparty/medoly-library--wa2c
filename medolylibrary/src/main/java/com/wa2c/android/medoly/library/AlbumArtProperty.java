@@ -1,6 +1,7 @@
 package com.wa2c.android.medoly.library;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,39 +34,37 @@ public enum AlbumArtProperty implements IProperty {
 
 
 
-    /** Prefix to property key name. */
-    public static final String KEY_PREFIX = "ALBUM_ART";
-
-    /** Name id */
-    private int nameId;
-    /** Property key name */
-    private String keyName;
-
-    /** Get property name id. */
-    public int getNameId() {
-        return this.nameId;
-    }
-    /** Get property name. */
-    public String getName(Context context) {
-        return context.getString(nameId);
-    }
-    /** Get property key name. */
-    public String getKeyName() {
-        return keyName;
-    }
-
     /** Constructor. */
     AlbumArtProperty(int nameId) {
         this.nameId = nameId;
         this.keyName = KEY_PREFIX + "_" + this.name();
     }
 
+    /** Name id */
+    private int nameId;
+    /** Property key name */
+    private String keyName;
 
+    /** Get the property name id. */
+    public int getNameId() {
+        return this.nameId;
+    }
+    /** Get the property name. */
+    public String getName(@NonNull Context context) {
+        return context.getString(nameId);
+    }
+    /** Get the property key name. */
+    public String getKeyName() {
+        return keyName;
+    }
 
     // static
 
+    /** Prefix to property key name. */
+    public static final String KEY_PREFIX = "ALBUM_ART";
+
     /**
-     * Map of key name and property.
+     * Map of a key name and a property.
      */
     private static final Map<String, AlbumArtProperty> keyPropertyMap = new HashMap<String, AlbumArtProperty>() {{
         for (AlbumArtProperty p : AlbumArtProperty.values()) {
@@ -74,11 +73,12 @@ public enum AlbumArtProperty implements IProperty {
     }};
 
     /**
-     * Get property of key name.
-     * @param keyName Key name.
-     * @return Property.
+     * Get the property from a key name.
+     * @param keyName A key name.
+     * @return The property.
      */
     public static AlbumArtProperty valueOfKey(String keyName) {
         return keyPropertyMap.get(keyName);
     }
+
 }
