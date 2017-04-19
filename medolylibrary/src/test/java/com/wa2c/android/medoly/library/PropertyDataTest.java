@@ -76,28 +76,50 @@ public class PropertyDataTest {
 
     @Test
     public void getFirst() throws Exception {
-
+        assertEquals(propertyData.getFirst(MediaProperty.TITLE), "Title1");
     }
 
 
     @Test
     public void put() throws Exception {
-
+        //propertyData.put(MediaProperty.TITLE)
     }
 
     @Test
     public void insertFirst() throws Exception {
+        propertyData.insertFirst(MediaProperty.TITLE, "Title0");
+        List<String> val1 = propertyData.get(MediaProperty.TITLE);
+        assertTrue(val1.equals(new ArrayList<String>() {{ add("Title0"); add("Title1"); add("Title2"); }}));
 
+        propertyData.insertFirst(MediaProperty.ARTIST, "Artist0");
+        List<String> val2 = propertyData.get(MediaProperty.ARTIST);
+        assertTrue(val2.equals(new ArrayList<String>() {{ add("Artist0"); add("Artist1"); add("Artist2"); }}));
     }
 
     @Test
     public void insertLast() throws Exception {
+        propertyData.insertLast(MediaProperty.TITLE, "Title3");
+        List<String> val1 = propertyData.get(MediaProperty.TITLE);
+        assertTrue(val1.equals(new ArrayList<String>() {{ add("Title1"); add("Title2"); add("Title3"); }}));
 
+        propertyData.insertLast(MediaProperty.ARTIST.getKeyName(), "Artist3");
+        List<String> val2 = propertyData.get(MediaProperty.ARTIST);
+        assertTrue(val2.equals(new ArrayList<String>() {{ add("Artist1"); add("Artist2"); add("Artist3"); }}));
     }
 
     @Test
     public void getText() throws Exception {
+        String text1 = propertyData.getText(MediaProperty.TITLE);
+        assertEquals(text1, "Title1\nTitle2");
 
+        String text2 = propertyData.getText(MediaProperty.ARTIST.getKeyName());
+        assertEquals(text2, "Artist1\nArtist2");
+
+        String text3 = propertyData.getText(MediaProperty.TITLE, ",");
+        assertEquals(text3, "Title1,Title2");
+
+        String text4 = propertyData.getText(MediaProperty.ARTIST.getKeyName(), " \t ");
+        assertEquals(text4, "Artist1 \t Artist2");
     }
 
     @Test
