@@ -1,13 +1,20 @@
 package com.wa2c.android.medoly.library;
 
+import android.support.v4.text.TextUtilsCompat;
+import android.text.TextUtils;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
+
 
 public class PropertyDataTest {
 
@@ -82,7 +89,21 @@ public class PropertyDataTest {
 
     @Test
     public void put() throws Exception {
-        //propertyData.put(MediaProperty.TITLE)
+        propertyData.put(MediaProperty.PRODUCER, new ArrayList<String>() {{ add("Producer1"); add("Producer2"); }} );
+        assertFalse(propertyData.isEmpty(MediaProperty.PRODUCER));
+        assertTrue(propertyData.get(MediaProperty.PRODUCER).equals(new ArrayList<String>() {{ add("Producer1"); add("Producer2"); }}));
+
+        propertyData.put(MediaProperty.COPYRIGHT.getKeyName(), new ArrayList<String>() {{ add("Copyright1"); add("Copyright2"); }} );
+        assertFalse(propertyData.isEmpty(MediaProperty.COPYRIGHT));
+        assertTrue(propertyData.get(MediaProperty.COPYRIGHT).equals(new ArrayList<String>() {{ add("Copyright1"); add("Copyright2"); }}));
+
+        propertyData.put(MediaProperty.ORIGINAL_ARTIST, "OriginalArtist1" );
+        assertFalse(propertyData.isEmpty(MediaProperty.ORIGINAL_ARTIST));
+        assertTrue(propertyData.get(MediaProperty.ORIGINAL_ARTIST).equals(new ArrayList<String>() {{ add("OriginalArtist1"); }}));
+
+        propertyData.put(MediaProperty.ORIGINAL_ALBUM.getKeyName(), "OriginalAlbum1" );
+        assertFalse(propertyData.isEmpty(MediaProperty.ORIGINAL_ALBUM));
+        assertTrue(propertyData.get(MediaProperty.ORIGINAL_ALBUM).equals(new ArrayList<String>() {{ add("OriginalAlbum1"); }}));
     }
 
     @Test
@@ -124,27 +145,60 @@ public class PropertyDataTest {
 
     @Test
     public void isMediaEmpty() throws Exception {
-
+//        assertTrue(propertyData.isMediaEmpty());
+//        propertyData.put(MediaProperty.DATA_URI, "files://test.mp3");
+//        assertFalse(propertyData.isMediaEmpty());
     }
 
     @Test
     public void isAlbumArtEmpty() throws Exception {
-
+//        assertTrue(propertyData.isAlbumArtEmpty());
+//        propertyData.put(AlbumArtProperty.DATA_URI, "files://test.png");
+//        assertFalse(propertyData.isAlbumArtEmpty());
     }
 
     @Test
     public void isLyricsEmpty() throws Exception {
-
+//        assertTrue(propertyData.isLyricsEmpty());
+//        propertyData.put(LyricsProperty.DATA_URI, "files://test.lrc");
+//        assertFalse(propertyData.isLyricsEmpty());
     }
 
     @Test
     public void isEmpty() throws Exception {
+        assertFalse(propertyData.isEmpty(MediaProperty.TITLE));
+        assertTrue(propertyData.isEmpty(MediaProperty.COMPOSER));
+        assertTrue(propertyData.isEmpty(MediaProperty.LYRICIST));
 
+        assertFalse(propertyData.isEmpty(MediaProperty.TITLE.getKeyName()));
+        assertTrue(propertyData.isEmpty(MediaProperty.COMPOSER.getKeyName()));
+        assertTrue(propertyData.isEmpty(MediaProperty.LYRICIST.getKeyName()));
+
+        assertFalse(propertyData.isEmpty());
+        PropertyData p = new PropertyData();
+        assertTrue(p.isEmpty());
     }
 
     @Test
     public void equals() throws Exception {
+        assertTrue(propertyData.equals(MediaProperty.TITLE, new ArrayList<String>() {{ add("Title1"); add("Title2"); }}));
+        assertTrue(propertyData.equals(MediaProperty.ARTIST.getKeyName(), new ArrayList<String>() {{ add("Artist1"); add("Artist2"); }}));
 
+        assertTrue(propertyData.equals(MediaProperty.COMPOSER, new ArrayList<String>()));
+        assertFalse(propertyData.equals(MediaProperty.COMPOSER, null));
+        assertFalse(propertyData.equals(MediaProperty.LYRICIST, new ArrayList<String>()));
+        assertFalse(propertyData.equals(MediaProperty.LYRICIST, null));
+        assertFalse(propertyData.equals(MediaProperty.ARRANGER, new ArrayList<String>()));
+        assertFalse(propertyData.equals(MediaProperty.ARRANGER, null));
+
+        propertyData.remove(MediaProperty.LYRICIST);
+        Map<String, List<String>> map = new HashMap<String, List<String>>() {{
+            put(MediaProperty.TITLE.getKeyName(),  new ArrayList<String>() {{ add("Title1");  add("Title2");  }});
+            put(MediaProperty.ARTIST.getKeyName(), new ArrayList<String>() {{ add("Artist1"); add("Artist2"); }});
+            put(MediaProperty.ALBUM.getKeyName(),  new ArrayList<String>() {{ add("Album1");  add("Album1");  }});
+            put(MediaProperty.COMPOSER.getKeyName(), new ArrayList<String>());
+        }};
+        assertTrue(propertyData.equals(map));
     }
 
 }

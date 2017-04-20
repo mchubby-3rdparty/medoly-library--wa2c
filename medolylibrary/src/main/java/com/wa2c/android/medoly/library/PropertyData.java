@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Property data.
@@ -335,8 +336,8 @@ public class PropertyData extends HashMap<String, List<String>> {
         if (object == null || !(object instanceof Map))
             return false;
 
-       try {
-            Map map = (Map)object;
+        try {
+            Map map = (Map) object;
             for (String key : this.keySet()) {
                 List<String> val = (List<String>)map.get(key);
                 if (!this.equals(key, val))
