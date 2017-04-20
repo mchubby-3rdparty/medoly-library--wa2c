@@ -1,12 +1,8 @@
 package com.wa2c.android.medoly.library;
 
-import android.support.v4.text.TextUtilsCompat;
-import android.text.TextUtils;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.HashMap;
